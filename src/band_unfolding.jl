@@ -22,8 +22,8 @@ num_band = 400                          # bands num in LC
 fermi_level_shift = 0.0                 # fermi level shift for deep band
 num_points = 17                         # 2*num_points number of points in K->G->M path  
 mid_z_coord = 19.0                      # z coordinate of the middle plane, a lazy input for developer.
-y_down = -6                             # y axis down limit
-y_up   = 1                              # y axis up limit
+y_down = -7                             # y axis down limit
+y_up   = 0                              # y axis up limit
 
 
 function parse_commandline()
@@ -280,6 +280,7 @@ for (idx_p, p) in enumerate(p_points)
     K,G0 = _find(p,6)
     val, vec, pos = SolveHk(K)
     G_group = expand(K,M_trans,6)
+    begin_time = time()
     for n in 1:size(val)[1]
         take_this_band = true
         mBZ_weight = 0
@@ -320,6 +321,7 @@ for (idx_p, p) in enumerate(p_points)
             push!(energy_levels, val[n])
         end
     end
+    println("Time for unfolding: ", time() - begin_time, "s")
     push!(all_energy_levels, energy_levels)
 end
 
