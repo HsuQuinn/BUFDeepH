@@ -340,7 +340,7 @@ ylabel("Energy Level")
 title("band_unfolding")
 xlim(0, length(p_points) + 1)
 ylim(y_down, y_up)
-savefig("BandUnFolDing.png")
+savefig("BandUnFolDing_method2.png")
 show()
 close()
 

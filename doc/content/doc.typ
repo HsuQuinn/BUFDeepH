@@ -1,6 +1,13 @@
 #import "../lib.typ": *
 
-Here is one band unfolding method to transfer from the deeph-format Hamitonian data to a unfolded band structure. This code is for two-dimensional Moire honeycomb lattice. For other cases, only minor modifications are needed.
+Here is one band unfolding method to transfer from the deeph-format Hamitonian data to a unfolded band structure. 
+
+Here are two methods:
+
+- Method1 is the general method, which is siutable for almost all cases. 
+
+- Method2 supports for two-dimensional Moire honeycomb lattice now, which is my original purpose. Actually, for other cases, only minor modifications are needed, you can try it by yourself.
+
 = Band unfolding method
 Hamilton basis: 
   $ angle.l bold(r)|alpha, bold(k) angle.r = 1/sqrt(N) sum_bold(R) e^(i bold(k) dot bold(R)) ϕ(bold(r)-bold(R)-bold(tau)_alpha) $
@@ -34,10 +41,16 @@ Hamilton basis:
 
   where capital letters for moire cell and small letters for primitive cell.
 
-= Unfolding Steps
+= Unfolding Method1
+
+Using eq.6, for a certain $p$ in space, we can find the corresponding $K$ and $G$, ignore the sumover for $G$, then we can calculate the intensity $I(p)$, with three loops of sumover: 1. $sum_(N K)$; 2. $sum_g$; 3. $sum_alpha$.
+
+
+= Unfolding Method2
 
 Back to eq.6, in fact, we project the Bloch wave function using a set of plane waves. From the perspective of band folding, the bands at det(M) G-points in a pBZ are all folded into an mBZ. Conversely, we only need to distinguish which G-point each band comes from, that is, to look at the weight with the largest projection component.
 
+#figure(image("fig/3.png",width:50%))
 *Step1*  For each $p$ in the KPATH, find $p = K + G_(0)$, where K in the (0,0)'s mBZ. 
 
 *Step2*  For the $K$ given in the Step1, find all $k = K + G_(m),$ where $m=1,2,...,det(M)$. 
@@ -47,7 +60,7 @@ maximum $max(w_m)$.
 
 *Step4* Compare $max(w_m)$ with $w_(0)$ in Step1, if $w_(0)$ is maximum, then accept this unfolding action.
 
-#figure(image("fig/3.png",width:60%))
+
 
 
 // #definition(

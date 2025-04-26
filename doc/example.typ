@@ -17,7 +17,8 @@
   
   text_font: "Proxima Nova",
   code_font: "Cascadia Mono",
-  accent: "#3666FA", // blue
+  // accent: "#3666FA", // blue
+  accent: "#A68219", // blue
   h1-prefix: "Section",
   colortab: true,
 )
